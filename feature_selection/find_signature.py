@@ -36,6 +36,16 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(features_train, labels_train)
+pred = clf.predict(features_test)
+from sklearn.metrics import accuracy_score
+print accuracy_score(pred, labels_test)
 
+ctr = 0
+for ft_importance in clf.feature_importances_:
+    if ft_importance > 0.2:
+        ctr += 1
 
-
+print ctr
